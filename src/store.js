@@ -1,5 +1,7 @@
 import {createStore} from 'redux';
 
-import {newGame, guess} from 'components/game';
+// import {newGame, makeGuess} from './reducers';
 
-export default createStore(newGame, guess);
+import reducer from './reducers'
+
+export default createStore(reducer);
