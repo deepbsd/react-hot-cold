@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './game.css';
 import Header from './header';
 import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
@@ -61,12 +61,13 @@ export default class Game extends React.Component {
         return (
             <div>
                 <Header onNewGame={() => this.newGame()}/>
+                <section className="game">
                 <GuessSection feedback={this.state.feedback}
                     onGuess={(guess) => this.guess(guess)} />
                 <GuessCount count={this.state.guesses.length} />
                 <GuessList guesses={this.state.guesses} />
+                </section>
             </div>
         );
     }
 }
-
