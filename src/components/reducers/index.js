@@ -3,21 +3,18 @@ import {MAKE_GUESS, NEW_GAME, TOGGLE_INFO_MODAL} from '../actions';
 const initialState = {
   guesses: [],
   feedback: 'Make your guess!',
-  correctAnswer: Math.floor(Math.random() * 100) + 1
+  correctAnswer: Math.round(Math.random() * 100),
+  showInfoModal: false
 }
-
-// export const newGame = state => {
-//   return Object.assign({}, state, {
-//     state: initialState
-//   });
-// }
 
 export default (state, action) => {
   state = state || initialState;
   if (action.type === NEW_GAME){
-    return Object.assign({}, state, {
-      state: initialState
+    state = Object.assign({},
+      initialState, {
+      correctAnswer: action.correctAnswer
     });
+    return state;
   }
   else if (action.type === MAKE_GUESS){
     const guess = parseInt(action.guess, 10);
@@ -40,8 +37,11 @@ export default (state, action) => {
     else if (difference >= 10) {
         feedback = 'You\'re Warm';
     }
-    else if (difference >= 1) {
+    else if (difference >= 5) {
         feedback = 'You\'re Hot!';
+    }
+    else if (difference >= 1){
+        feedback = 'You\'re nearly on Fire!'
     }
     else {
         feedback = 'You got it!';

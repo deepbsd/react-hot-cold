@@ -4,7 +4,6 @@ export const newGame = () => ({
     correctAnswer: Math.round(Math.random()*100)
 });
 
-
 export const MAKE_GUESS = 'MAKE_GUESS';
 export const makeGuess = guess => ({
     type: MAKE_GUESS,
