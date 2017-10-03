@@ -10,11 +10,11 @@ const initialState = {
 export default (state, action) => {
   state = state || initialState;
   if (action.type === NEW_GAME){
-    state = Object.assign({},
+    return Object.assign({},
       initialState, {
       correctAnswer: action.correctAnswer
     });
-    return state;
+    //return state;
   }
   else if (action.type === MAKE_GUESS){
     const guess = parseInt(action.guess, 10);
