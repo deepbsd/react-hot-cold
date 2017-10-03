@@ -11,7 +11,7 @@ import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
-    <Game />,
+    <Game />
   </Provider>,
     document.getElementById('root')
 );

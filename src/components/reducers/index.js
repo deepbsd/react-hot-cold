@@ -1,4 +1,4 @@
-import {MAKE_GUESS, NEW_GAME} from '../actions';
+import {MAKE_GUESS, NEW_GAME, TOGGLE_INFO_MODAL} from '../actions';
 
 const initialState = {
   guesses: [],
@@ -6,16 +6,21 @@ const initialState = {
   correctAnswer: Math.floor(Math.random() * 100) + 1
 }
 
-export const newGame = state => {
-  return Object.assign({}, state, {
-    state = initialState;
-  })
-}
+// export const newGame = state => {
+//   return Object.assign({}, state, {
+//     state: initialState
+//   });
+// }
 
-export const makeGuess = (state, action) => {
+export default (state, action) => {
   state = state || initialState;
-  if (action.type === MAKE_GUESS){
-    guess = parseInt(guess, 10);
+  if (action.type === NEW_GAME){
+    return Object.assign({}, state, {
+      state: initialState
+    });
+  }
+  else if (action.type === MAKE_GUESS){
+    const guess = parseInt(action.guess, 10);
     if (isNaN(guess)) {
         state = Object.assign({}, state, {
           feedback: 'Please enter a valid number'
@@ -23,7 +28,7 @@ export const makeGuess = (state, action) => {
         return state;
     }
 
-    const difference = Math.abs(guess - this.state.correctAnswer);
+    const difference = Math.abs(guess - state.correctAnswer);
 
     let feedback;
     if (difference >= 50) {
@@ -48,6 +53,12 @@ export const makeGuess = (state, action) => {
     });
     return state;
   }
+  else if (action.type === TOGGLE_INFO_MODAL){
+    state = Object.assign({}, state, {
+      showInfoModal: !state.showInfoModal
+    });
+    return state;
+  }
   return state;
 
-})
+}

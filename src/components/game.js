@@ -4,10 +4,10 @@ import Header from './header';
 import GuessSection from './guess-section';
 import GuessCount  from './guess-count';
 import GuessList from './guess-list';
-import {makeGuess, newGame} from './actions';
+// import {makeGuess, newGame, toggleInfoModal} from './actions';
 
 //export default class Game extends React.Component {
-export function Game(props){
+export default function Game(props){
     // constructor(props) {
     //     super(props);
     //     this.state = {
@@ -62,26 +62,25 @@ export function Game(props){
     //render() {
         return (
             <div>
-                <Header onNewGame={() => newGame()}/>
+                <Header />
                 <section className="game">
-                <GuessSection feedback={this.state.feedback}
-                    onGuess={(guess) => makeGuess(guess)} />
-                <GuessCount count={this.state.guesses.length} />
-                <GuessList guesses={this.state.guesses} />
+                <GuessSection />
+                <GuessCount  />
+                <GuessList  />
                 </section>
             </div>
         );
     //}
 }
 
-Game.defaultProps = {
-  guesses: [],
-  feedback: 'Make your guess!',
-  correctAnswer: Math.floor(Math.random() * 100) + 1
-}
-
-export const mapStateToProps = state => ({
-  guesses: state.guesses,
-  feedback: state.feedback,
-  correctAnswer: state.correctAnswer
-})
+// Game.defaultProps = {
+//   guesses: [],
+//   feedback: 'Make your guess!',
+//   correctAnswer: Math.floor(Math.random() * 100) + 1
+// }
+//
+// export const mapStateToProps = state => ({
+//   guesses: state.guesses,
+//   feedback: state.feedback,
+//   correctAnswer: state.correctAnswer
+// })
